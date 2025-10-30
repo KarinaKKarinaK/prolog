@@ -32,3 +32,20 @@ pure_heart(R) :- hobbit(R); elf(R).
 % true.
 % canDestroy(hobbit).
 % true.
+
+
+% EXERCISE 3 ==========================================================
+
+% 1. false
+% 2. true, Ring = power
+% 3. false
+% 4. true, X = a, Y = b, Z = c
+% 5. true, X = layer(a), Y = b, Z = c
+% 6. true, X = 3+4
+% 7. false
+% 8. true, none because there are no variables in the query
+% 9. true, none because there are no variables in the query
+% 10. true, Z = 10 and 10 =:= 10
+% 11. true, none because there are no variables in the query
+% 12. true, C = 5
+
