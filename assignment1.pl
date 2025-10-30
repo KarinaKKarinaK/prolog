@@ -51,6 +51,8 @@ pure_heart(R) :- hobbit(R); elf(R).
 
 % EXERCISE 4 ==========================================================
 
+% 1. The call same_species(dog, A). will fail because not is expressed as \+ in prolog, not as not().
+
 mammal(dog).
 mammal(cat).
 bird(eagle).
@@ -58,4 +60,3 @@ bird(parrot).
 same_species(X, Y) :- dif(X, Y), mammal(X), mammal(Y).
 same_species(X, Y) :- dif(X, Y), bird(X), bird(Y).
 
-% 1. The call same_species(dog, A). will fail because not is expressed as \+ in prolog, not as not().
