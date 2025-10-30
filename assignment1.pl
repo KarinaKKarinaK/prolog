@@ -63,3 +63,5 @@ same_species(X, Y) :- bird(X), bird(Y), \+(Y = X).
 %Draw the search tree for the call same_species(dog, A). (from the adapted knowledge base
 %after completing Exercise 2.2). For drawing the tree, an ASCII representation in Prolog code is
 %acceptable. [6 pts]
+
+% 1. We can only state the difference between the two clauses only after we defined them.
