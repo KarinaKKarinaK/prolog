@@ -23,3 +23,12 @@ pure_heart(R) :- hobbit(R); elf(R).
 
 % queries
 % ?- corruptionCheck(froddo).
+% false.
+% ?- corruptionCheck(sauron).
+% true.
+% ?- corruptionCheck(elf).
+% false.
+% safeBearer(hobbit).
+% true.
+% canDestroy(hobbit).
+% true.
