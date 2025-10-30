@@ -13,16 +13,13 @@ canDestroy(X) :- safeBearer(X)
 % EXERCISE 2 ==========================================================
 
 hobbit(froddo).
-possesses_one_ring(froddo).
-pure_heart(froddo) :- true. 
-
+hobbit(bilbo).
 villain(sauron).
-possesses_one_ring(sauron).
-pure_heart(sauron) :- false. 
-
 orc(gollum).
-possesses_one_ring(gollum).
-pure_heart(gollum) :- false.
-
 elf(legolas).
-pure_heart(legolas) :- true.
+
+possesses_one_ring(R) :- hobbit(R); orc(R); villain(R).
+pure_heart(R) :- hobbit(R); elf(R).
+
+% queries
+% ?- corruptionCheck(froddo).
