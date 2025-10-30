@@ -8,7 +8,7 @@ corruptionCheck(X) :- possesses_one_ring(X), \+ pure_heart(X).
 
 safeBearer(X) :- \+ corruptionCheck(X).
 
-canDestroy(X) :- safeBearer(X)
+canDestroy(X) :- safeBearer(X).
 
 % EXERCISE 2 ==========================================================
 
@@ -55,7 +55,7 @@ mammal(dog).
 mammal(cat).
 bird(eagle).
 bird(parrot).
-same_species(X, Y) :- mammal(X), mammal(Y).
-same_species(X, Y) :- bird(X), bird(Y).
+same_species(X, Y) :- dif(X, Y), mammal(X), mammal(Y).
+same_species(X, Y) :- dif(X, Y), bird(X), bird(Y).
 
 % 1. The call same_species(dog, A). will fail because not is expressed as \+ in prolog, not as not().
