@@ -49,3 +49,13 @@ pure_heart(R) :- hobbit(R); elf(R).
 % 11. true, none because there are no variables in the query
 % 12. true, C = 5
 
+% EXERCISE 4 ==========================================================
+
+mammal(dog).
+mammal(cat).
+bird(eagle).
+bird(parrot).
+same_species(X, Y) :- X \= Y, mammal(X), mammal(Y).
+same_species(X, Y) :- X \= Y, bird(X), bird(Y).
+
+% 1. The call same_species(dog, A). will fail because not is expressed as \+ in prolog, not as not().
