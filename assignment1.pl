@@ -4,4 +4,7 @@ wrriten_by(j_r_r_Tolkien, lord_Of_the_Rings).
 fantasy_writer(j_r_r_Tolkien).
 
 # A being who possesses the One Ring becomes corrupted unless they are of pure heart.
-corrupted(X) :- possesses_one_ring(X), \+ pure_heart(X).
+# (Write a rule with head corruptionCheck/2, returning true if the being remains uncorrupted and
+# false otherwise.)
+corruptionCheck(X, false) :- possesses_one_ring(X), \+ pure_heart(X).
+corruptionCheck(X, true) :- \+ possesses_one_ring(X).
