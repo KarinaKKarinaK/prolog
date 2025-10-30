@@ -57,6 +57,6 @@ mammal(dog).
 mammal(cat).
 bird(eagle).
 bird(parrot).
-same_species(X, Y) :- dif(X, Y), mammal(X), mammal(Y).
-same_species(X, Y) :- dif(X, Y), bird(X), bird(Y).
+same_species(X, Y) :- mammal(X), mammal(Y), \+(Y = X).
+same_species(X, Y) :- bird(X), bird(Y), \+(Y = X).
 
