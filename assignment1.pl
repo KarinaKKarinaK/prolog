@@ -55,7 +55,7 @@ mammal(dog).
 mammal(cat).
 bird(eagle).
 bird(parrot).
-same_species(X, Y) :- X \= Y, mammal(X), mammal(Y).
-same_species(X, Y) :- X \= Y, bird(X), bird(Y).
+same_species(X, Y) :- mammal(X), mammal(Y).
+same_species(X, Y) :- bird(X), bird(Y).
 
 % 1. The call same_species(dog, A). will fail because not is expressed as \+ in prolog, not as not().
