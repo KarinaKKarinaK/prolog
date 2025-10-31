@@ -1,1 +1,1 @@
-split_string([X, Y | Suffix], [X, Y], Suffix).
+swap_pair([X, Y], [Y, X]).

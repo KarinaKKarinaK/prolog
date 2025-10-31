@@ -165,5 +165,11 @@ split_string([X, Y | Suffix], [X, Y], Suffix).
 %S = [l, l, o].
 
 %Define a predicate swap_pair(Pair, Swapped) that succeeds when Pair is a list of exactly two
-%elements and Swapped is that list with the order reversed. Example query: ?- swap_pair([x,y],
-%Z). [4 pts]
+%elements and Swapped is that list with the order reversed. Example query: ?- swap_pair([x,y], %Z). [4 pts]
+
+swap_pair([X, Y], [Y, X]).
+
+%Query results:
+%?- swap_pair([x,y], Z).
+%Z = [y, x].
+
