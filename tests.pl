@@ -1,1 +1,5 @@
-swap_pair([X, Y], [Y, X]).
+warm(a). 
+happy(b). 
+summer(X):-warm(Y). 
+summer(X):-happy(X). 
+warm(Y):-warm(Y). 

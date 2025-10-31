@@ -173,3 +173,179 @@ swap_pair([X, Y], [Y, X]).
 %?- swap_pair([x,y], Z).
 %Z = [y, x].
 
+% EXERCISE 6 ==========================================================
+1. summer(X):-happy(X). 
+2. summer(X):-warm(Y). 
+3. warm(Y):-warm(Y). 
+4. warm(a). 
+5. happy(b).
+
+%For each of the following cases construct a program P such that on query ?-summer(a):
+%1. . . . directly runs into an infinite loop without returning any answer. [6 pts]
+
+warm(Y):-warm(Y).
+summer(X):-happy(X). 
+summer(X):-warm(Y).  
+warm(a). 
+happy(b).   
+
+[trace]  ?- summer(a).
+   Call: (12) summer(a) ? creep
+   Call: (13) happy(a) ? creep
+   Fail: (13) happy(a) ? creep
+   Redo: (12) summer(a) ? creep
+   Call: (13) warm(_16346) ? creep
+   Call: (14) warm(_17080) ? creep
+   Call: (15) warm(_17080) ? creep
+   Call: (16) warm(_17080) ? creep
+   Call: (17) warm(_17080) ? creep
+   Call: (18) warm(_17080) ? creep
+   Call: (19) warm(_17080) ? creep
+   Call: (20) warm(_17080) ? creep
+   Call: (21) warm(_17080) ? creep
+   Call: (22) warm(_17080) ? creep
+   Call: (23) warm(_17080) ? creep
+   Call: (24) warm(_17080) ? creep
+   Call: (25) warm(_17080) ? creep
+   Call: (26) warm(_17080) ? creep
+   Call: (27) warm(_17080) ? creep
+   Call: (28) warm(_17080) ? creep
+   Call: (29) warm(_17080) ? creep
+   Call: (30) warm(_17080) ? creep
+   Call: (31) warm(_17080) ? creep
+   Call: (32) warm(_17080) ? creep
+   Call: (33) warm(_17080) ? creep
+   Call: (34) warm(_17080) ? creep
+   Call: (35) warm(_17080) ? creep
+   Call: (36) warm(_17080) ? creep
+   Call: (37) warm(_100) ? creep
+   Call: (38) warm(_100) ? creep
+   Call: (39) warm(_100) ? creep
+   Call: (40) warm(_100) ? creep
+   Call: (41) warm(_100) ? creep
+   Call: (42) warm(_100) ? creep
+   Call: (43) warm(_100) ? creep
+   Call: (44) warm(_100) ? creep
+   Call: (45) warm(_100) ? creep
+   Call: (46) warm(_100) ? creep
+   Call: (47) warm(_100) ? creep
+   Call: (48) warm(_100) ? creep
+   Call: (49) warm(_100) ? creep
+   Call: (50) warm(_100) ? creep
+   Call: (51) warm(_100) ? creep
+   Call: (52) warm(_100) ? creep
+   Call: (53) warm(_100) ? creep
+   Call: (54) warm(_100) ? creep
+   Call: (55) warm(_100) ? creep
+   Call: (56) warm(_100) ? creep
+   Call: (57) warm(_100) ? creep
+   Call: (58) warm(_100) ? creep
+   Call: (59) warm(_100) ? creep
+   Call: (60) warm(_100) ? creep
+   Call: (61) warm(_100) ? creep
+   Call: (62) warm(_100) ? creep
+   Call: (63) warm(_100) ? creep
+   Call: (64) warm(_100) ? creep
+   Call: (65) warm(_100) ? creep
+   Call: (66) warm(_100) ? creep
+   Call: (67) warm(_100) ? creep
+   Call: (68) warm(_100) ? creep
+   Call: (69) warm(_100) ? creep
+   Call: (70) warm(_100) ? creep
+   Call: (71) warm(_100) ? creep
+   Call: (72) warm(_100) ? creep
+   Call: (73) warm(_100) ? creep
+   Call: (74) warm(_100) ? creep
+   Call: (75) warm(_100) ? creep
+   Call: (76) warm(_100) ? creep
+   Call: (77) warm(_100) ? creep
+   Call: (78) warm(_100) ? creep
+   Call: (79) warm(_100) ? creep
+   Call: (80) warm(_100) ? creep
+   Call: (81) warm(_100) ? creep
+   Call: (82) warm(_100) ? creep
+   Call: (83) warm(_100) ? creep
+   Call: (84) warm(_100) ? creep
+   Call: (85) warm(_100) ? creep
+   Call: (86) warm(_100) ? creep
+   Call: (87) warm(_100) ? creep
+   Call: (88) warm(_100) ? creep
+   Call: (89) warm(_100) ? creep
+   Call: (90) warm(_100) ? creep
+   Call: (91) warm(_100) ? creep
+   Call: (92) warm(_100) ? creep
+   Call: (93) warm(_100) ? creep
+   Call: (94) warm(_100) ? creep
+   Call: (95) warm(_100) ? creep
+   Call: (96) warm(_100) ? creep
+   Call: (97) warm(_100) ? creep
+   Call: (98) warm(_100) ? creep
+   Call: (99) warm(_100) ? creep
+   Call: (100) warm(_100) ? creep
+   Call: (101) warm(_100) ? 
+
+% 2. . . . returns infinitely often the answer ‘true’. [6 pts]
+warm(a). 
+happy(b). 
+summer(X):-warm(Y). 
+summer(X):-happy(X). 
+warm(Y):-warm(Y). 
+
+
+[trace]  ?- summer(a).
+   Call: (12) summer(a) ? creep
+   Call: (13) warm(_26898) ? creep
+   Exit: (13) warm(a) ? creep
+   Exit: (12) summer(a) ? creep
+true ;
+   Redo: (13) warm(_30812) ? creep
+   Call: (14) warm(_31546) ? creep
+   Exit: (14) warm(a) ? creep
+   Exit: (13) warm(a) ? creep
+   Exit: (12) summer(a) ? creep
+true ;
+   Redo: (14) warm(_31546) ? creep
+   Call: (15) warm(_31546) ? creep
+   Exit: (15) warm(a) ? creep
+   Exit: (14) warm(a) ? creep
+   Exit: (13) warm(a) ? creep
+   Exit: (12) summer(a) ? creep
+true ;
+   Redo: (15) warm(_31546) ? creep
+   Call: (16) warm(_31546) ? creep
+   Exit: (16) warm(a) ? creep
+   Exit: (15) warm(a) ? creep
+   Exit: (14) warm(a) ? creep
+   Exit: (13) warm(a) ? creep
+   Exit: (12) summer(a) ? creep
+true ;
+   Redo: (16) warm(_31546) ? creep
+   Call: (17) warm(_31546) ? creep
+   Exit: (17) warm(a) ? creep
+   Exit: (16) warm(a) ? creep
+   Exit: (15) warm(a) ? creep
+   Exit: (14) warm(a) ? creep
+   Exit: (13) warm(a) ? creep
+   Exit: (12) summer(a) ? creep
+true ;
+   Redo: (17) warm(_31546) ? creep
+   Call: (18) warm(_31546) ? creep
+   Exit: (18) warm(a) ? creep
+   Exit: (17) warm(a) ? creep
+   Exit: (16) warm(a) ? creep
+   Exit: (15) warm(a) ? creep
+   Exit: (14) warm(a) ? creep
+   Exit: (13) warm(a) ? creep
+   Exit: (12) summer(a) ? creep
+true ;
+   Redo: (18) warm(_31546) ? creep
+   Call: (19) warm(_31546) ? creep
+   Exit: (19) warm(a) ? creep
+   Exit: (18) warm(a) ? creep
+   Exit: (17) warm(a) ? creep
+   Exit: (16) warm(a) ? creep
+   Exit: (15) warm(a) ? creep
+   Exit: (14) warm(a) ? creep
+   Exit: (13) warm(a) ? creep
+   Exit: (12) summer(a) ? creep
+true 
