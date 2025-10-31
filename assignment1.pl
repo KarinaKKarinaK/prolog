@@ -54,7 +54,12 @@ pure_heart(R) :- hobbit(R); elf(R).
 % 1. We can only state the difference between the two clauses only after we defined them, so the chnage that 
 % made it work wasn putting teh comparison statement after both X and Y have been defined.
 
-
+% mammal(dog).
+% mammal(cat).
+% bird(eagle).
+% bird(parrot).
+% same_species(X, Y) :- mammal(X), mammal(Y), not(Y = X).
+% same_species(X, Y) :- bird(X), bird(Y), not(Y = X).
 
 % We have changed the order of statements, putting the comparison statement at the end of each clause. 
 % So that now not(Y = X). is evaluated after both X and Y have been defined.
