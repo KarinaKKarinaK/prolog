@@ -54,12 +54,7 @@ pure_heart(R) :- hobbit(R); elf(R).
 % 1. We can only state the difference between the two clauses only after we defined them, so the chnage that 
 % made it work wasn putting teh comparison statement after both X and Y have been defined.
 
-mammal(dog).
-mammal(cat).
-bird(eagle).
-bird(parrot).
-same_species(X, Y) :- mammal(X), mammal(Y), not(Y = X).
-same_species(X, Y) :- bird(X), bird(Y), not(Y = X).
+
 
 % We have changed the order of statements, putting the comparison statement at the end of each clause. 
 % So that now not(Y = X). is evaluated after both X and Y have been defined.
@@ -89,3 +84,45 @@ same_species(X, Y) :- bird(X), bird(Y), not(Y = X).
 %   Fail: (13) bird(dog) ? creep
 %   Fail: (12) same_species(dog, _33522) ? creep
 %false.
+
+% The current search order within the rules may still cause unnecessary backtracking, especially
+% when variables are uninstantiated. Reorder the goals *within each rule* (not the rules themselves)
+% to make the program more efficient, and explain why this change improves performance. [5 pts]
+
+mammal(cat).
+mammal(dog).
+bird(eagle).
+bird(parrot).
+same_species(X, Y) :- mammal(X), mammal(Y), not(X = Y).
+same_species(X, Y) :- bird(X), bird(Y), not(X = Y ).
+
+%[trace]  ?- same_species(dog, A).
+%   Call: (12) same_species(dog, _8374) ? creep
+%   Call: (13) mammal(dog) ? creep
+%   Exit: (13) mammal(dog) ? creep
+%   Call: (13) mammal(_8374) ? creep
+%   Exit: (13) mammal(cat) ? creep
+%^  Call: (13) not(cat=dog) ? creep
+%^  Exit: (13) not(user:(cat=dog)) ? creep
+%   Exit: (12) same_species(dog, cat) ? creep
+% A = cat ;
+
+[trace]  ?- same_species(dog, A).
+   Call: (12) same_species(dog, _34562) ? creep
+   Call: (13) mammal(dog) ? creep
+   Exit: (13) mammal(dog) ? creep
+   Call: (13) mammal(_34562) ? creep
+   Exit: (13) mammal(cat) ? creep
+^  Call: (13) not(dog=cat) ? creep
+^  Exit: (13) not(user:(dog=cat)) ? creep
+   Exit: (12) same_species(dog, cat) ? creep
+A = cat ;
+   Redo: (13) mammal(_34562) ? creep
+   Exit: (13) mammal(dog) ? creep
+^  Call: (13) not(dog=dog) ? creep
+^  Fail: (13) not(user:(dog=dog)) ? creep
+   Redo: (12) same_species(dog, _34562) ? creep
+   Call: (13) bird(dog) ? creep
+   Fail: (13) bird(dog) ? creep
+   Fail: (12) same_species(dog, _34562) ? creep
+false.
