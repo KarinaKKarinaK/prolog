@@ -69,3 +69,23 @@ same_species(X, Y) :- bird(X), bird(Y), not(Y = X).
 %Draw the search tree for the call same_species(dog, A). (from the adapted knowledge base
 %after completing Exercise 2.2). For drawing the tree, an ASCII representation in Prolog code is
 %acceptable. [6 pts]
+
+% [trace]  ?-  same_species(dog, A).
+%   Call: (12) same_species(dog, _33522) ? creep
+%   Call: (13) mammal(dog) ? creep
+%   Exit: (13) mammal(dog) ? creep
+%   Call: (13) mammal(_33522) ? creep
+%   Exit: (13) mammal(dog) ? creep
+%^  Call: (13) not(dog=dog) ? creep
+%^  Fail: (13) not(user:(dog=dog)) ? creep
+%   Redo: (13) mammal(_33522) ? creep
+%   Exit: (13) mammal(cat) ? creep
+%^  Call: (13) not(cat=dog) ? creep
+%^  Exit: (13) not(user:(cat=dog)) ? creep
+%   Exit: (12) same_species(dog, cat) ? creep
+%A = cat ;
+%   Redo: (12) same_species(dog, _33522) ? creep
+%   Call: (13) bird(dog) ? creep
+%   Fail: (13) bird(dog) ? creep
+%   Fail: (12) same_species(dog, _33522) ? creep
+%false.
