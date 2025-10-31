@@ -107,22 +107,22 @@ same_species(X, Y) :- bird(X), bird(Y), not(X = Y ).
 %   Exit: (12) same_species(dog, cat) ? creep
 % A = cat ;
 
-[trace]  ?- same_species(dog, A).
-   Call: (12) same_species(dog, _34562) ? creep
-   Call: (13) mammal(dog) ? creep
-   Exit: (13) mammal(dog) ? creep
-   Call: (13) mammal(_34562) ? creep
-   Exit: (13) mammal(cat) ? creep
-^  Call: (13) not(dog=cat) ? creep
-^  Exit: (13) not(user:(dog=cat)) ? creep
-   Exit: (12) same_species(dog, cat) ? creep
-A = cat ;
-   Redo: (13) mammal(_34562) ? creep
-   Exit: (13) mammal(dog) ? creep
-^  Call: (13) not(dog=dog) ? creep
-^  Fail: (13) not(user:(dog=dog)) ? creep
-   Redo: (12) same_species(dog, _34562) ? creep
-   Call: (13) bird(dog) ? creep
-   Fail: (13) bird(dog) ? creep
-   Fail: (12) same_species(dog, _34562) ? creep
-false.
+% [trace]  ?- same_species(dog, A).
+%    Call: (12) same_species(dog, _34562) ? creep
+%    Call: (13) mammal(dog) ? creep
+%    Exit: (13) mammal(dog) ? creep
+%    Call: (13) mammal(_34562) ? creep
+%    Exit: (13) mammal(cat) ? creep
+% ^  Call: (13) not(dog=cat) ? creep
+% ^  Exit: (13) not(user:(dog=cat)) ? creep
+%    Exit: (12) same_species(dog, cat) ? creep
+% A = cat ;
+%    Redo: (13) mammal(_34562) ? creep
+%    Exit: (13) mammal(dog) ? creep
+% ^  Call: (13) not(dog=dog) ? creep
+% ^  Fail: (13) not(user:(dog=dog)) ? creep
+%    Redo: (12) same_species(dog, _34562) ? creep
+%    Call: (13) bird(dog) ? creep
+%    Fail: (13) bird(dog) ? creep
+%    Fail: (12) same_species(dog, _34562) ? creep
+% false.
