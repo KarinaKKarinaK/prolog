@@ -1,0 +1,1 @@
+split_string([X, Y | Suffix], [X, Y], Suffix).

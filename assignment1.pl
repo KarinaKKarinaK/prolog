@@ -126,3 +126,39 @@ same_species(X, Y) :- bird(X), bird(Y), not(X = Y ).
 %    Fail: (13) bird(dog) ? creep
 %    Fail: (12) same_species(dog, _34562) ? creep
 % false.
+
+% EXERCISE 5 ==========================================================
+% Define a predicate first_two(List, X, Y) that succeeds when X and Y are the first two
+% elements of List. Example query: ?- first_two([a,b,c,d], X, Y). [4 pts]
+
+first_two([X, Y|_], X, Y).
+
+% Query results:
+%?- first_two([a,b,c,d], X, Y). 
+%X = a,
+%Y = b.
+
+% Define a predicate last_two(List, X, Y) that succeeds when X and Y are the last two elements
+% of a list of exactly four elements. Example query: ?- last_two([a,b,c,d], X, Y). [4 pts]
+
+last_two([_, _, X, Y], X, Y).
+
+%The query results:
+%?- last_two([a,b,c,d], X, Y).
+%X = c,
+%Y = d.
+
+% Define a predicate split_string(StringList, Prefix, Suffix) that succeeds when StringList
+% is composed of two sublists, the first of length two (Prefix) and the rest (Suffix). Example
+% query: ?- split_string([h,e,l,l,o], P, S). [4 pts]
+
+split_string([X, Y | Suffix], [X, Y], Suffix).
+
+% The query results:
+%?- split_string([h,e,l,l,o], P, S).
+%P = [h, e],
+%S = [l, l, o].
+
+%Define a predicate swap_pair(Pair, Swapped) that succeeds when Pair is a list of exactly two
+%elements and Swapped is that list with the order reversed. Example query: ?- swap_pair([x,y],
+%Z). [4 pts]
