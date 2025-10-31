@@ -51,17 +51,21 @@ pure_heart(R) :- hobbit(R); elf(R).
 
 % EXERCISE 4 ==========================================================
 
-% 1. The call same_species(dog, A). will fail because not is expressed as \+ in prolog, not as not().
+% 1. We can only state the difference between the two clauses only after we defined them, so the chnage that 
+% made it work wasn putting teh comparison statement after both X and Y have been defined.
 
 mammal(dog).
 mammal(cat).
 bird(eagle).
 bird(parrot).
-same_species(X, Y) :- mammal(X), mammal(Y), \+(Y = X).
-same_species(X, Y) :- bird(X), bird(Y), \+(Y = X).
+same_species(X, Y) :- mammal(X), mammal(Y), not(Y = X).
+same_species(X, Y) :- bird(X), bird(Y), not(Y = X).
 
-%Draw the search tree for the call same_species(dog, A). (from the adapted knowledge base
+% We have changed the order of statements, putting the comparison statement at the end of each clause. 
+% So that now not(Y = X). is evaluated after both X and Y have been defined.
+% This way, Prolog can now correctly determine if X and Y are different after they have been assigned 
+% values which is why the query can now run correctly and give the appropriate answer.
+
+%Draw the search tree for the call  (from the adapted knowledge base
 %after completing Exercise 2.2). For drawing the tree, an ASCII representation in Prolog code is
 %acceptable. [6 pts]
-
-% 1. We can only state the difference between the two clauses only after we defined them.
