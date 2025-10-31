@@ -66,6 +66,6 @@ same_species(X, Y) :- bird(X), bird(Y), not(Y = X).
 % This way, Prolog can now correctly determine if X and Y are different after they have been assigned 
 % values which is why the query can now run correctly and give the appropriate answer.
 
-%Draw the search tree for the call  (from the adapted knowledge base
+%Draw the search tree for the call same_species(dog, A). (from the adapted knowledge base
 %after completing Exercise 2.2). For drawing the tree, an ASCII representation in Prolog code is
 %acceptable. [6 pts]
