@@ -191,6 +191,10 @@ summer(X):-warm(Y).
 warm(a). 
 happy(b).   
 
+% Explanation: Runs infinitely because the rule we placed first, whcih iswarm(Y):-warm(Y). 
+causes Prolog to keep calling itself recursively without ever reaching a base case or a 
+fact that can actually terminate the recursion
+
 [trace]  ?- summer(a).
    Call: (12) summer(a) ? creep
    Call: (13) happy(a) ? creep
@@ -297,6 +301,12 @@ summer(X):-happy(X).
 warm(a).
 warm(Y):-warm(Y).  
 happy(b).  
+
+% Explanation: This runs infinitely true because we first define warm(a) and warm (b) which is then 
+used to satisfy the summer(X):-warm(Y). rule, which then leads to warm(Y):-warm(Y). being called
+infinitely many times, each time returning warm(a) and warm(b) as valid answers for warm(Y). which 
+then leads to summer(X) being true infinitely many times. So thsi arrangement  of clauses 
+will cause Prolog to run infinitely often returning the answer true.
 
 
 [trace]  ?- summer(a).
