@@ -183,6 +183,8 @@ swap_pair([X, Y], [Y, X]).
 %For each of the following cases construct a program P such that on query ?-summer(a):
 %1. . . . directly runs into an infinite loop without returning any answer. [6 pts]
 
+% because we define 2 clauses only after the rules are defined, and the rule warm(Y):-warm(Y) is recursive, so prolog will try to keep resolving warm(Y) 
+% by calling itself, and it will just never reach the fact warm(a). So it will loop for ever, without finding any answer.
 warm(Y):-warm(Y).
 summer(X):-happy(X). 
 summer(X):-warm(Y).  
@@ -285,11 +287,16 @@ happy(b).
    Call: (101) warm(_100) ? 
 
 % 2. . . . returns infinitely often the answer ‘true’. [6 pts]
-warm(a). 
-happy(b). 
+
+% After prompting summer(a), the prolog will try to run the first rule summer(a):-warm(Y). and then try to find a y such that warm(y) is true.
+% since thsi time the the fact warm(a) is defined before the recursive rule, prolog will succeed oncenwith Y=a, and then it will return true once.
+% But then prolog will reach the recursive rule warm(Y):-warm(Y). and go into an infinite loop, but always giving true when it backtracks, giving infinitely true.
+
 summer(X):-warm(Y). 
 summer(X):-happy(X). 
-warm(Y):-warm(Y). 
+warm(a).
+warm(Y):-warm(Y).  
+happy(b).  
 
 
 [trace]  ?- summer(a).
