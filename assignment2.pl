@@ -1,4 +1,4 @@
-% Exercise 1
+% Exercise 1 ==============================================
 
 bike(library, cafeteria, 3).
 bike(cafeteria, main_gate, 2).
@@ -29,7 +29,7 @@ route(F, T, M) :-
 
 % routes(lab_building, lecture_hall, 10).
 
-% Exercise 2
+% Exercise 2 ==============================================
 
 on(b, a).
 on(c, b).
@@ -37,6 +37,14 @@ above(X, Y) :- on(X, Y).
 above(X, Y) :- on(X, Z), above(Z, Y).
 
 % Exercise 2.1
+on(b, a).
+on(c, b).
+above(X, Y) :- on(X, Y).
+above(X, Y) :- on(X, Z), above(Z, Y).
+
+% ?- above(X, Y).
+% X = b,
+% Y = a .
 
 % Exercise 2.2
 atLeastThree(X) :- on(Y, X), on(Z, Y), on(_, Z).
