@@ -47,4 +47,17 @@ above(X, Y) :- on(X, Z), above(Z, Y).
 % Y = a .
 
 % Exercise 2.2
-atLeastThree(X) :- on(Y, X), on(Z, Y), on(_, Z).
+atLeastThree(X) :-
+    on(X, Y),    
+    on(Y, Z),  
+    on(Z, _). 
+
+atLeastThree_2(X) :- 
+    setof(Y, above(X, Y), Ys), 
+    length(Ys, L),
+    L >= 3.
+
+% atLeastThree(d).
+% true.
+% atLeastThree_2(d).
+% true.
