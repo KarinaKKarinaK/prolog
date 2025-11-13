@@ -30,3 +30,13 @@ route(F, T, M) :-
 % routes(lab_building, lecture_hall, 10).
 
 % Exercise 2
+
+on(b, a).
+on(c, b).
+above(X, Y) :- on(X, Y).
+above(X, Y) :- on(X, Z), above(Z, Y).
+
+% Exercise 2.1
+
+% Exercise 2.2
+atLeastThree(X) :- on(Y, X), on(Z, Y), on(_, Z).
