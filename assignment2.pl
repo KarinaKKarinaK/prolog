@@ -66,6 +66,16 @@ atLeastThree_2(X) :-
 
 % Exercise 2.4
 
+on(a,b).
+on(b,c).
+on(c,d).
+on(d,e).
+on(e,table).
+tower([X]) :- on(X,table).
+tower([X,Y|T]) :- on(X,Y), tower([Y|T]).
+
+exactlyThreeTower(X) :- tower(T), length(T, 4), on(X, table), on(X, T).
+
 % Exercise 3 ==============================================
 
 % Exercise 4 ==============================================

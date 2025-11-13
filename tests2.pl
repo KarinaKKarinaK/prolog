@@ -1,11 +1,9 @@
+on(a,b).
+on(b,c).
+on(c,d).
+on(d,e).
+on(e,table).
+tower([X]) :- on(X,table).
+tower([X,Y|T]) :- on(X,Y), tower([Y|T]).
 
-on(b, a).
-on(c, b).
-on(d, c).
-above(X, Y) :- on(X, Y).
-above(X, Y) :- on(X, Z), above(Z, Y).
-
-% Exercise 2.1
-
-% Exercise 2.2
-atLeastThree(X) :- on(Y, X), on(Z, Y), on(_, Z).
+exactlyThreeTower(X) :- tower(T), length(T, 4), member(X, T), on(X, table).
