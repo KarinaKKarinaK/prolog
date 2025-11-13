@@ -14,4 +14,19 @@ route_by_bike(F, T) :- bike(F, T, _).
 route(F, T) :- bike(F, T, _) ; walk(F, T, _).
 
 % Exercise 1.3
-route_m(F, T, M) :- route(F, _), route(_, T), .
+route(F, T, M) :- bike(F, T, M).
+route(F, T, M) :- walk(F, T, M).
+
+route(F, T, M) :-
+    bike(F, X, M1),
+    route(X, T, M2),
+    M is M1 + M2.
+
+route(F, T, M) :-
+    walk(F, X, M1),
+    route(X, T, M2),
+    M is M1 + M2.
+
+% routes(lab_building, lecture_hall, 10).
+
+% Exercise 2

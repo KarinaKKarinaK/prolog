@@ -7,7 +7,17 @@ walk(lecture_hall, lab_building, 7).
 
 route_by_bike(F, T) :- bike(F, T, _).
 
-route(F, T) :- bike(F, T, _) ; walk(F, T, _).
+route(F, T, M) :- bike(F, T, M).
+route(F, T, M) :- walk(F, T, M).
 
-% route(library, lecture_hall).
-% route(library, main_gate).
+route(F, T, M) :-
+    bike(F, X, M1),
+    route(X, T, M2),
+    M is M1 + M2.
+
+route(F, T, M) :-
+    walk(F, X, M1),
+    route(X, T, M2),
+    M is M1 + M2.
+
+% routes(lab_building, lecture_hall, 10).
