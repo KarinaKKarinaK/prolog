@@ -52,12 +52,14 @@ atLeastThree(X) :-
     on(Y, Z),  
     on(Z, _). 
 
+% atLeastThree(d).
+% true.
+
+% Exercise 2.3
 atLeastThree_2(X) :- 
     setof(Y, above(X, Y), Ys), 
     length(Ys, L),
     L >= 3.
 
-% atLeastThree(d).
-% true.
 % atLeastThree_2(d).
 % true.
