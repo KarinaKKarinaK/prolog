@@ -12,3 +12,6 @@ route_by_bike(F, T) :- bike(F, T, _).
 
 % Exercise 1.2
 route(F, T) :- bike(F, T, _) ; walk(F, T, _).
+
+% Exercise 1.3
+route_m(F, T, M) :- route(F, _), route(_, T), .
