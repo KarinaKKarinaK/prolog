@@ -161,3 +161,7 @@ albumsByRating(AlbumList,SortedTitles) :-
 
 
 % Exercise 6.5
+
+countAlbumsByGenre(AlbumList,Genre,Count) :-
+    findall(Name, (member(Name, AlbumList), album(Name, _, Genres, _, _, _), member(Genre, Genres)), Albums),
+    length(Albums, Count).
