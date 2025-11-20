@@ -74,9 +74,19 @@ on(e,table).
 tower([X]) :- on(X,table).
 tower([X,Y|T]) :- on(X,Y), tower([Y|T]).
 
-exactlyThreeTower(X) :- tower(T), length(T, 4), on(X, table), on(X, T).
+exactlyThreeTower(X) :-
+    tower(L),
+    L = [X|_],
+    length(L, 2).
 
 % Exercise 3 ==============================================
+The predicate xyz/3 and splits the list L into two lists (A and B) using a helper
+predicate, xy/4, and here when these lists are combined in a specific way with recursion,
+the elements get reordered or split according to the pattern defined in the recursion. 
+xyz/3 decomposes the first list into two lists (A and B), where xy/4b is in charge of the 
+matching and building of these lists by adding the elements to the front.
+The recursion goes on by taking the "head" of L and managing the rearrangements until 
+the entire list is processed into A and B.
 
 % Exercise 4 ==============================================
 
