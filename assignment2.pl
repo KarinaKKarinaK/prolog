@@ -151,14 +151,27 @@ albumsByGenre(Genre, L) :-
 % succeeds if SortedTitles contains all album titles in AlbumList sorted by rating (highest first)
 % so basically this sorts a list of albums by their rating, with teh highest first
 
-albumsByRating(AlbumList,SortedTitles) :-
-    findall(Rating-Title, (
+albumsByRating(AlbumList, SortedTitles) :-
+    findall(NegRating-Title, (
         member(Title, AlbumList),
-        album(Title, _, _, _, _, Rating)
+        album(Title, _, _, _, _, Rating),
+        NegRating is -Rating
     ), Pairs),
-    sort(0, @>=, Pairs, SortedPairs),        
-    pairs_values(SortedPairs, SortedTitles).
+    keysort(Pairs, SortedNegPairs),
+    pairs_values(SortedNegPairs, SortedTitles).
 
+% Running the query
+% ?- allAlbumTitlesSorted(A), albumsByRating(A, Sorted).
+% A = ["Abbey Road", "Random Access Memories", "The Dark Side of the Moon", "Thriller"],
+% Sorted = ["Abbey Road", "The Dark Side of the Moon", "Thriller", "Random Access Memories"].
+
+% ?- allAlbumTitles(L), albumsByRating(L, Sorted).
+% L = ["Abbey Road", "Thriller", "Random Access Memories", "The Dark Side of the Moon"],
+% Sorted = ["Abbey Road", "The Dark Side of the Moon", "Thriller", "Random Access Memories"].
+
+% ?- allAlbumTitles(L), albumsByRating(L, Sorted).
+% L = ["Abbey Road", "Thriller", "Random Access Memories", "The Dark Side of the Moon"],
+% Sorted = ["Abbey Road", "The Dark Side of the Moon", "Thriller", "Random Access Memories"].
 
 % Exercise 6.5
 

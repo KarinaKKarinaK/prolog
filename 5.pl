@@ -10,7 +10,7 @@ album("The Dark Side of the Moon",[artist("Waters","Roger"),artist("Gilmour","Da
 [genre("progressive rock")],10,43,10).
 
 allAlbumTitles(L) :- findall(Title, album(Title, _, _, _, _, _), L).
-A = ["Abbey Road", "Thriller", "Random Access Memories", "The Dark Side of the Moon"].
+
 allAlbumTitlesSorted(Sorted) :-
     allAlbumTitles(L),
     sort(L, Sorted).
@@ -20,10 +20,11 @@ albumsByGenre(Genre, L) :-
         (album(Title, _, Genres, _, _, _), member(Genre, Genres)),
         L).
 
-albumsByRating(AlbumList,SortedTitles) :-
-    findall(Rating-Title, (
+albumsByRating(AlbumList, SortedTitles) :-
+    findall(NegRating-Title, (
         member(Title, AlbumList),
-        album(Title, _, _, _, _, Rating)
+        album(Title, _, _, _, _, Rating),
+        NegRating is -Rating
     ), Pairs),
-    sort(0, @>=, Pairs, SortedPairs),        
-    pairs_values(SortedPairs, SortedTitles).
+    keysort(Pairs, SortedNegPairs),
+    pairs_values(SortedNegPairs, SortedTitles).
