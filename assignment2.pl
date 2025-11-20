@@ -147,5 +147,17 @@ albumsByGenre(Genre, L) :-
 % L = ["Abbey Road"].
 
 % Exercise 6.4
+% albumsByRating(AlbumList,SortedTitles)
+% succeeds if SortedTitles contains all album titles in AlbumList sorted by rating (highest first)
+% so basically this sorts a list of albums by their rating, with teh highest first
+
+albumsByRating(AlbumList,SortedTitles) :-
+    findall(Rating-Title, (
+        member(Title, AlbumList),
+        album(Title, _, _, _, _, Rating)
+    ), Pairs),
+    sort(0, @>=, Pairs, SortedPairs),        
+    pairs_values(SortedPairs, SortedTitles).
+
 
 % Exercise 6.5

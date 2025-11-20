@@ -19,3 +19,11 @@ albumsByGenre(Genre, L) :-
     findall(Title,
         (album(Title, _, Genres, _, _, _), member(Genre, Genres)),
         L).
+
+albumsByRating(AlbumList,SortedTitles) :-
+    findall(Rating-Title, (
+        member(Title, AlbumList),
+        album(Title, _, _, _, _, Rating)
+    ), Pairs),
+    sort(0, @>=, Pairs, SortedPairs),        
+    pairs_values(SortedPairs, SortedTitles).
