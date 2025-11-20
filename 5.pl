@@ -1,11 +1,21 @@
-midrange([H|T], M) :- 
-    midrange_helper(T, H, H, Mid),
-    M is (Mid).
+album("Abbey Road",[artist("Lennon","John"),artist("McCartney","Paul")],
+[genre("rock")],17,47,10).
 
-midrange_helper([], Min, Max, Mid) :-
-    Mid is (Min + Max) // 2.
+album("Thriller",[artist("Jackson","Michael")],[genre("pop"),genre("funk")],9,42,9).
 
-midrange_helper([H|T], CurrMin, CurrMax, Mid) :-
-    NewMin is min(CurrMin, H),
-    NewMax is max(CurrMax, H),
-    midrange_helper(T, NewMin, NewMax, Mid).
+album("Random Access Memories",[artist("Daft","Guy-Manuel"),artist("Daft","Thomas")],
+[genre("electronic")],13,74,8).
+
+album("The Dark Side of the Moon",[artist("Waters","Roger"),artist("Gilmour","David")],
+[genre("progressive rock")],10,43,10).
+
+allAlbumTitles(L) :- findall(Title, album(Title, _, _, _, _, _), L).
+A = ["Abbey Road", "Thriller", "Random Access Memories", "The Dark Side of the Moon"].
+allAlbumTitlesSorted(Sorted) :-
+    allAlbumTitles(L),
+    sort(L, Sorted).
+
+albumsByGenre(Genre, L) :-
+    findall(Title,
+        (album(Title, _, Genres, _, _, _), member(Genre, Genres)),
+        L).
