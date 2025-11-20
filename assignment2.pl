@@ -90,6 +90,19 @@ the entire list is processed into A and B.
 
 % Exercise 4 ==============================================
 
+square(X, Y) :- Y is X * X.
+
+balance(A,B,C) :-
+    permutation(A,BC),
+    append(B,C,BC),
+    sum_squares(B,SumB),
+    sum_squares(C,SumC),
+    SumB = SumC.
+
+sum_squares(List,Sum) :-
+    maplist(square,List,Squares),
+    sum_list(Squares,Sum).
+
 % Exercise 5 ==============================================
 
 % Exercise 6 ==============================================
